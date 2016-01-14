@@ -13,15 +13,16 @@ namespace ConsoleApplication1
 
         public void CreaExcel(Dictionary<TimeSpan, Res> algoritmoRes, Dictionary<TimeSpan, Res> baselineRes, string outputFile)
         {
-            using (SLDocument exl = new SLDocument(outputFile))
+            using (SLDocument exl = new SLDocument(BASELINE + "template.xlsx"))
             {
-                foreach (var sheet in new string[] { "Algoritmo", "Baseline" })
+                foreach (var sheet in new string[] { "Algoritmo", "Emoticons" })
                 {
+                    var valori = (sheet == "Algoritmo") ? algoritmoRes : baselineRes;
                     exl.SelectWorksheet(sheet);
                     int i = 2;
-                    foreach (var g in algoritmoRes)
+                    foreach (var g in valori)
                     {
-                        exl.SetCellValue("A" + i, g.Key.ToString("HH:mm"));
+                        exl.SetCellValue("A" + i, g.Key.ToString());
                         exl.SetCellValue("B" + i, g.Value.Pos);
                         exl.SetCellValue("C" + i, g.Value.Neg);
                         exl.SetCellValue("D" + i, g.Value.Neu);
@@ -29,8 +30,8 @@ namespace ConsoleApplication1
                         exl.SetCellValue("F" + i, g.Value.Pos - g.Value.Neg);
                         i++;
                     }
-                    exl.SaveAs("FileGenerato" + ".xlsx");
                 }
+                exl.SaveAs(outputFile);
             }
         }
     }

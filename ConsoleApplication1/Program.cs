@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     class Program
     {
         static string NOMEFILE = @"1_6_amazhs.txt";
-        static string NOMEFILELESS = NOMEFILE + @"less4";
+        static string NOMEFILELESS = NOMEFILE + @".less4";
         static string OUTPUT_PATH = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\output.txt";
         static string BASELINE_PATH = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\baseline.txt";
         static string PATH = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\";
@@ -25,16 +25,16 @@ namespace ConsoleApplication1
             pRes.Process(lines);
             lines = File.ReadAllLines(PATH + NOMEFILELESS);
             pRes.Cbow(lines);
-            pRes.StampaRisultato(OUTPUT_PATH);
 
             //Calcolo baseline
             lines = File.ReadAllLines( PATH + NOMEFILE);
             baseLineRes.Cbow(lines);
             lines = File.ReadAllLines(PATH + NOMEFILELESS);
             baseLineRes.Cbow(lines);
-            baseLineRes.StampaRisultato(BASELINE_PATH);
             //Sposta Directory
 
+            StampaExcel stampa = new StampaExcel();
+            stampa.CreaExcel(pRes.giornata, baseLineRes.giornata, PATH + NOMEFILE + @".xlsx");
             //Termina
             Console.ReadKey();
         }

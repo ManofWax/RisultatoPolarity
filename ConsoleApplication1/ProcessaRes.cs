@@ -10,7 +10,7 @@ namespace ConsoleApplication1
 {
     public class ProcessaRes
     {
-        Dictionary<TimeSpan, Res> giornata = new Dictionary<TimeSpan, Res>();
+        public Dictionary<TimeSpan, Res> giornata = new Dictionary<TimeSpan, Res>();
         public int numRighe { get; set; }
         public int numPos { get; set; }
         public int numNeg { get; set; }
