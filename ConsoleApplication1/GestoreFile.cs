@@ -17,8 +17,8 @@ namespace ConsoleApplication1
         {
             Nome = path;
             NomeConEstensione = path +"." + estensione;
-            PathTo = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\RisultatiPerGiorno";
-            PathFrom = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\";
+            PathTo = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\RisultatiPerGiorno\" + NomeConEstensione;
+            PathFrom = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\" + NomeConEstensione;
         }
     }
 }

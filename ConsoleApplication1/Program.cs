@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     class Program
     {
         static GestoreFile Input = new GestoreFile("1_7_massansc", "txt");
-        static GestoreFile InputLess4 = new GestoreFile(Input.NomeConEstensione, @".less4");
+        static GestoreFile InputLess4 = new GestoreFile(Input.NomeConEstensione, "less4");
         static GestoreFile InputRnnlm = new GestoreFile("TESTRES", "txt");
         static GestoreFile InputBOW = new GestoreFile("BOW", "txt");
         //static string OUTPUT_PATH = PATH + @"output.txt";
