@@ -20,6 +20,8 @@ namespace ConsoleApplication1
 
         static void Main(string[] args)
         {
+            Valutazione();
+
             ProcessaRes pRes = new ProcessaRes();
             ProcessaRes baseLineRes = new ProcessaRes();
             ProcessaRes bowRes = new ProcessaRes();
@@ -71,6 +73,12 @@ namespace ConsoleApplication1
             lines = File.ReadAllLines(InputLess4.PathFrom);
             pRes.ContaEmoticons(lines);
             Console.WriteLine("Emoticons positive {0} Negative {1} righe totali {2}", pRes.numPos, pRes.numNeg, pRes.numRighe);
+        }
+
+        static void Valutazione()
+        {
+            ValutaFile valuta = new ValutaFile(@"C: \Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\PerGiorno\1_4_destiny.txt", 0);
+            valuta.ProcessaFile();
         }
     }
 }
