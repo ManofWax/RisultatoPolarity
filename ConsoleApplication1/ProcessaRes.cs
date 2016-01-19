@@ -88,6 +88,24 @@ namespace ConsoleApplication1
             }
         }
 
+        public void ProcessBow(string[] lines)
+        {
+            foreach (var l in lines)
+            {
+                string[] splits = l.Split('\t');
+                TimeSpan tempo = GetTimeSpan(FromUNIX(splits[0]));
+                string res = splits[1];
+                if (res == "1:pos")
+                {
+                    giornata[tempo].Pos++;
+                }
+                else
+                {
+                    giornata[tempo].Neg++;
+                }
+            }
+        }
+
         public void StampaRisultato(string path)
         {
             using (var f = new StreamWriter(path))

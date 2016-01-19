@@ -11,13 +11,28 @@ namespace ConsoleApplication1
     {
         static string BASELINE = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\";
 
-        public void CreaExcel(Dictionary<TimeSpan, Res> algoritmoRes, Dictionary<TimeSpan, Res> baselineRes, string outputFile)
+        public void CreaExcel(Dictionary<TimeSpan, Res> algoritmoRes, Dictionary<TimeSpan, Res> baselineRes, Dictionary<TimeSpan, Res> bowRes, string outputFile)
         {
             using (SLDocument exl = new SLDocument(BASELINE + "template.xlsx"))
             {
-                foreach (var sheet in new string[] { "Algoritmo", "Emoticons" })
+                foreach (var sheet in new string[] { "Algoritmo", "Emoticons", "Bow"})
                 {
-                    var valori = (sheet == "Algoritmo") ? algoritmoRes : baselineRes;
+                    Dictionary<TimeSpan, Res> valori = null;
+                    switch (sheet)
+                    {
+                        case "Algoritmo":
+                            valori = algoritmoRes;
+                            break;
+                        case "Emoticons":
+                            valori = baselineRes;
+                            break;
+                        case "Bow":
+                            valori = bowRes;
+                            break;
+                        default:
+                            break;
+                    }
+
                     exl.SelectWorksheet(sheet);
                     int i = 2;
                     foreach (var g in valori)

@@ -9,7 +9,7 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        static string NOMEFILE = @"1_6_amazhs.txt";
+        static string NOMEFILE = @"1_7_massansc.txt";
         static string NOMEFILELESS = NOMEFILE + @".less4";
         static string OUTPUT_PATH = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\output.txt";
         static string BASELINE_PATH = @"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\baseline.txt";
@@ -19,12 +19,17 @@ namespace ConsoleApplication1
         {
             ProcessaRes pRes = new ProcessaRes();
             ProcessaRes baseLineRes = new ProcessaRes();
+            ProcessaRes bowRes = new ProcessaRes();
 
             //pRes.SeparaGiorni();
             string[] lines = File.ReadAllLines(@"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\TESTRES.txt");
             pRes.Process(lines);
             lines = File.ReadAllLines(PATH + NOMEFILELESS);
             pRes.Cbow(lines);
+
+            //Calcolo BOW
+            lines = File.ReadAllLines(@"C:\Users\admin\Documents\Visual Studio 2015\Projects\RisultatoPolarityTwitch\Files\bow.txt");
+            bowRes.ProcessBow(lines);
 
             //Calcolo baseline
             lines = File.ReadAllLines( PATH + NOMEFILE);
@@ -34,7 +39,7 @@ namespace ConsoleApplication1
             //Sposta Directory
 
             StampaExcel stampa = new StampaExcel();
-            stampa.CreaExcel(pRes.giornata, baseLineRes.giornata, PATH + NOMEFILE + @".xlsx");
+            stampa.CreaExcel(pRes.giornata, baseLineRes.giornata, bowRes.giornata, PATH + NOMEFILE + @".xlsx");
             //Termina
             Console.ReadKey();
         }
